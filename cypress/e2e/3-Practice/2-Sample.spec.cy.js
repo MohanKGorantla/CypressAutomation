@@ -34,6 +34,9 @@ describe('empty spec', function() {
 
       // Verifying the logo text
       cy.get('.brand').should('have.text','GREENKART' )
+      cy.get('.cart-icon').click()
+      cy.contains('PROCEED TO CHECKOUT').click()
+      cy.contains('Place Order').click()
 
 
 
