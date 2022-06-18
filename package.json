@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/MohanKGorantla/CypressAutomation#readme",
   "devDependencies": {
-    "cypress": "^10.1.0"
+    "cypress": "^10.1.0",
+    "cypress-iframe": "^1.0.1"
   }
 }
