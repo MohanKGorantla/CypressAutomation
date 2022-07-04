@@ -1,0 +1,100 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-06-27T07:47:02.890Z",
+    "end": "2022-06-27T07:47:18.611Z",
+    "duration": 15721,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "8250df76-56d6-45c6-b538-5992fbfad1ee",
+      "title": "",
+      "fullFile": "cypress\\e2e\\3-Practice\\12-Framework-1.spec.cy.js",
+      "file": "cypress\\e2e\\3-Practice\\12-Framework-1.spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d863a21f-0a85-4bc2-884f-eacaeb23ceb2",
+          "title": "Building Framework",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "passes",
+              "fullTitle": "Building Framework passes",
+              "timedOut": null,
+              "duration": 11963,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const homePage = new _HomePage.default();\nconst productPage = new _ProductsPage.default();\nconst checkoutPage = new _CheckoutPage.default();\nconst deliveryLocationPage = new _DeliveryLocation.default(); // We are setting environment varaibales for specific suite by passing the env value to config(In the descible)\ncy.visit(Cypress.env('baseURL') + Cypress.env('angular_url'));\nhomePage.getEditBox().type(this.data.name);\nhomePage.getGender().select(this.data.gender);\nhomePage.getTwoWayDataBinding().should('have.value', this.data.name);\nhomePage.getEditBox().should('have.attr', 'minlength', 2);\nhomePage.getRadioButtton().should('be.disabled');\nhomePage.getShopButton().click();\nthis.data.productName.forEach(function (element) {\n  cy.addProduct(element);\n});\nproductPage.getCheckoutbtn().click();\nvar sum = 0;\ncy.get('tr td:nth-child(4) strong').each(($e1, index, $item) => {\n  var price = $e1.text();\n  price = price.split(' '); // price[0]= $. price[1]= 65000\n  sum = Number(sum) + Number(price[1].trim());\n}).then(function () {\n  cy.log(sum);\n});\ncy.get('h3 strong').then(function (element) {\n  var total = element.text();\n  total = total.split(' ');\n  cy.log(total[1]);\n  total = Number(total[1].trim());\n  cy.log(total);\n  expect(total).to.equal(sum);\n});\ncheckoutPage.getcheckoutbutton().click();\ndeliveryLocationPage.getCountrytxtBox().type('India'); // cy.wait(5000)\n// We can update the 'defaultCommandTimeout' using this API\n// Remember, any changes that you make to configuration using this API will be in effect\n// for the remainder of the tests in the same spec file.\n//Cypress.config('defaultCommandTimeout', 8000)\n//Cypress.config('defaultCommandTimeout', 10000)\nCypress.config('defaultCommandTimeout', 10000);\nCypress.config('defaultCommandTimeout'); // => 10000\ncy.get('.suggestions > ul > li > a').click({\n  force: true\n});\ndeliveryLocationPage.getAgreeTCCheckBox().check({\n  force: true\n});\ndeliveryLocationPage.getPurchaseBtn().click();\ncy.get('.alert').then(function (element) {\n  const msg = element.text();\n  expect(msg).to.includes('Success');\n});",
+              "err": {},
+              "uuid": "b8bacf4f-e509-4ccd-867e-66e7aed092c8",
+              "parentUUID": "d863a21f-0a85-4bc2-884f-eacaeb23ceb2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b8bacf4f-e509-4ccd-867e-66e7aed092c8"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 11963,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
